@@ -1,0 +1,32 @@
+{
+  "name": "proof-of-humanity-core-ui",
+  "version": "1.0.0",
+  "description": "Proof-of-Humanity Core UI",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node -r dotenv/config index.js",
+    "docker": "NODE_ENV=production node index.js",
+    "dev": "nodemon -r dotenv/config --inspect index.js",
+    "build": "docker build -t bakoushin/poh-core .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["ethereum", "smart-contracts", "proofing-tools"],
+  "author": "Alex Bakoushin <alex@bakoush.in>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "2.8.5",
+    "cross-env": "7.0.3",
+    "dotenv": "10.0.0",
+    "ejs": "3.1.6",
+    "ethers": "5.5.1",
+    "express": "4.17.1",
+    "morgan": "1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.15"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
