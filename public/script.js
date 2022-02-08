@@ -1,6 +1,7 @@
 'use strict';
 
 import coreABI from './core-abi.js';
+import { getNetworkNameByChainId } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const connectWallet = document.getElementById('connect-wallet');
@@ -10,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const main = document.getElementById('main');
   const ownerTools = document.getElementById('owner-tools');
+
+  const chainError = document.getElementById('chain-error');
+  const chain = document.getElementById('chain');
+  const chainId = chain.textContent.trim();
+  chain.textContent = getNetworkNameByChainId(chainId); 
 
   const addDelegate = document.getElementById('add-delegate');
   const delegateAddress = document.getElementById('delegate-address');
@@ -47,6 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       coreContract = new web3.eth.Contract(coreABI, coreAddress);
 
+      if (chainId && chainId !== (await web3.eth.getChainId()).toString()) {
+        chainError.classList.remove('hidden');
+      }
+            
       walletAddress.textContent = address;
       if (coreOwner.toLowerCase() === address.toLowerCase()) {
         walletAddressLabel.textContent = 'Owner';

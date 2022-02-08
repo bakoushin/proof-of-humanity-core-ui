@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import ethers from 'ethers';
 import api from './api.js';
-import { port, providerURL, coreAddress } from './config.js';
+import { port, providerURL, coreAddress, chainId } from './config.js';
 import coreABI from './core-abi.js';
 
 const provider = new ethers.providers.JsonRpcProvider(providerURL);
@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 app.use('/api/v1', cors(), api);
 
 app.get('/', (req, res) => {
-  res.render('index', { coreAddress, coreOwner });
+  res.render('index', { coreAddress, coreOwner, chainId });
 });
 
 app.use((req, res) => {

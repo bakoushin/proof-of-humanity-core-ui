@@ -30,9 +30,14 @@
         <button type="button" id="connect-wallet-button"><span class="text-accent">Connect wallet</span></button>
       </div>
       <div id="main" class="hidden">
-        <div class="wallet-info line">
-          <div>Address: <span id="wallet-address"></span></div>
-          <div id="wallet-address-label" class="label hidden"></div>
+        <div class="wallet-info">
+          <div class="line">
+            <div>Address: <span id="wallet-address"></span></div>
+            <div id="wallet-address-label" class="label hidden"></div>
+          </div>
+          <div id="chain-error" class="error-block hidden">
+            Please switch network to <span id="chain" class="text-accent"><%=chainId%></span> and reload the page
+          </div>          
         </div>
         <div id="owner-tools" class="hidden">
           <h3>Add delegate</h3>

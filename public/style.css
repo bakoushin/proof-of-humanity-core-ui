@@ -118,6 +118,14 @@ button:hover {
   color: var(--danger-color);
 }
 
+.error-block {
+  padding: 1rem;
+  margin: 1rem 0;
+  color: #fff;
+  background-color: var(--danger-color);
+  border-radius: 0.33rem;
+}
+
 .text-accent {
   font-weight: 800;
 }
