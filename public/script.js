@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const addDelegateSuccessAddress = document.getElementById(
     'add-delegate-success-address'
   );
+  const addDelegateSpinner = document.getElementById('add-delegate-spinner');
 
   const verifyProof = document.getElementById('verify-proof');
   const verifyProofAddress = document.getElementById('verify-proof-address');
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const verifyProofTimestamp = document.getElementById(
     'verify-proof-timestamp'
   );
+  const verifySpinner = document.getElementById('verify-spinner');
 
   const coreAddress = document
     .getElementById('core-address')
@@ -70,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    addDelegateSpinner.classList.remove('hidden');
     addDelegateError.textContent = null;
 
     try {
@@ -77,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'EvidenceDelegateAdded',
         { filter: { evidenceDelegate: delegate } },
         (error, event) => {
+          addDelegateSpinner.classList.add('hidden');
           if (error) {
             console.error(error);
             return;
@@ -112,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     verifyProofSuccess.classList.add('hidden');
+    verifySpinner.classList.remove('hidden');
     verifyProofTimestamp.textContent = null;
     verifyProofError.textContent = null;
 
@@ -123,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!evidence) {
         verifyProofError.textContent = 'Proof-of-humanity not found';
+        verifySpinner.classList.add('hidden');
         return;
       }
 
@@ -168,6 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
         verifyProofTimestamp.textContent = null;
         verifyProofSuccess.classList.add('hidden');
       }
+
+      verifySpinner.classList.add('hidden');
+
     } catch (error) {
       console.error(error);
       verifyProofError.textContent = 'Error';

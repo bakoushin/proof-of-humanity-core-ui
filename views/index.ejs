@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PoH Core UI</title>
+    <title>Proof-of-Humanity Core UI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,14 +24,10 @@
   <body>
     <div id="root">
       <div class="header">
-        <h1>PoH Core UI</h1>
-        <div class="header-details">
-          <div>Contract: <span id="core-address"><%=coreAddress%></span></div>
-          <div>Owner: <span id="core-owner"><%=coreOwner%></span></div>
-        </div>
+        <h1>Proof-of-Humanity Core UI</h1>
       </div>
       <div id="connect-wallet">
-        <button type="button" id="connect-wallet-button">Connect wallet</button>
+        <button type="button" id="connect-wallet-button"><span class="text-accent">Connect wallet</span></button>
       </div>
       <div id="main" class="hidden">
         <div class="wallet-info line">
@@ -49,6 +45,7 @@
                 autocomplete="off"
               />
               <button type="submit">Add delegate</button>
+              <img id="add-delegate-spinner" class="spinner hidden" src="spinner.gif" alt="Spinner" width="16" height="16">
             </form>
             <div id="add-delegate-error" class="input-error"></div>
           </div>
@@ -67,13 +64,29 @@
               autocomplete="off"
             />
             <button type="submit">Verify</button>
+            <img id="verify-spinner" class="spinner hidden" src="spinner.gif" alt="Spinner" width="16" height="16">
           </form>
         </div>
         <div id="verify-proof-success" class="line hidden">
           <img src="checkmark.png" alt="Checkmark" class="checkmark" />
           <div>Humanity proven <span id="verify-proof-timestamp"></span></div>
         </div>
-        <p id="verify-proof-error" class="error"></div>
+        <p id="verify-proof-error" class="error"/>
+      </div>
+      <div class="contract-details">
+        <div>Core contract: <span id="core-address"><%=coreAddress%></span></div>
+        <div>Owner: <span id="core-owner"><%=coreOwner%></span></div>
+      </div>
+      <div class="footer">
+        <div>
+          Source code:
+          <span class="footer-link">
+            <a href="https://glitch.com/edit/#!/proof-of-humanity-core-ui">Glitch</a>
+          </span class="footer-link">
+          <span>
+            <a href="https://github.com/bakoushin/proof-of-humanity-core-ui">Github</a>
+          </span>
+        </div>
       </div>
     </div>
   </body>

@@ -8,6 +8,7 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   --primary-color: #ddd;
   --secondary-color: #ccc;
+  --secondary-text: #888;
   --danger-color: #ff5151;
 }
 
@@ -61,13 +62,24 @@ button:hover {
   border-bottom: 1px solid var(--secondary-color);
 }
 
-.header-details {
-  font-size: 0.8rem;
+.contract-details {
+  color: var(--secondary-text);
+  font-size: 0.85rem;
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  text-align: end;
-  margin-left: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--secondary-color);
+  padding-top: 1.5rem;
+}
+
+.footer {
+  color: var(--secondary-text);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.footer-link {
+  margin-right: 0.5rem;
 }
 
 .wallet-info {
@@ -104,6 +116,10 @@ button:hover {
 
 .error {
   color: var(--danger-color);
+}
+
+.text-accent {
+  font-weight: 800;
 }
 
 .hidden {
