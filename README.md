@@ -47,7 +47,7 @@ GET /api/v1/verify-transaction/{hash}
 
 ```
 {
-  error: <boolean>
+  error: <boolean|string>
   result: <boolean>
   address: <string>
   timestamp: <ISO string>
