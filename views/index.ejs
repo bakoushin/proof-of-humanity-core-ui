@@ -63,9 +63,10 @@
         <div class="line">
           <form id="verify-proof">
             <input
-              id="verify-proof-address"
+              id="verify-proof-input"
+              class="input-transaction"
               type="text"
-              placeholder="Address to verify"
+              placeholder="Address or tx hash to verify"
               autocomplete="off"
             />
             <button type="submit">Verify</button>
@@ -74,7 +75,7 @@
         </div>
         <div id="verify-proof-success" class="line hidden">
           <img src="checkmark.png" alt="Checkmark" class="checkmark" />
-          <div>Humanity proven <span id="verify-proof-timestamp"></span></div>
+          <div id="verify-proof-success-message"></div>
         </div>
         <p id="verify-proof-error" class="error"/>
       </div>

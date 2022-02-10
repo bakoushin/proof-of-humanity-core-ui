@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const addDelegateSpinner = document.getElementById('add-delegate-spinner');
 
   const verifyProof = document.getElementById('verify-proof');
-  const verifyProofAddress = document.getElementById('verify-proof-address');
+  const verifyProofInput = document.getElementById('verify-proof-input');
   const verifyProofSuccess = document.getElementById('verify-proof-success');
   const verifyProofError = document.getElementById('verify-proof-error');
-  const verifyProofTimestamp = document.getElementById(
-    'verify-proof-timestamp'
+  const verifyProofSuccessMessage = document.getElementById(
+    'verify-proof-success-message'
   );
   const verifySpinner = document.getElementById('verify-spinner');
 
@@ -119,18 +119,42 @@ document.addEventListener('DOMContentLoaded', () => {
   verifyProof.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const addressToVerify = verifyProofAddress.value.trim();
+    const inputToVerify = verifyProofInput.value.trim();
 
-    if (!addressToVerify) {
+    if (!inputToVerify) {
+      return;
+    }
+
+    const addressMatch = /^0x[a-fA-F0-9]{40}$/;
+    const transactionHashMatch = /^0x([A-Fa-f0-9]{64})$/;
+    
+    const isAddress = addressMatch.test(inputToVerify);
+    const isTransaction = transactionHashMatch.test(inputToVerify);
+
+    if (!isAddress && !isTransaction) {
+      verifyProofError.textContent = 'Invalid input';
+      verifySpinner.classList.add('hidden');
       return;
     }
 
     verifyProofSuccess.classList.add('hidden');
     verifySpinner.classList.remove('hidden');
-    verifyProofTimestamp.textContent = null;
+    verifyProofSuccessMessage.textContent = null;
     verifyProofError.textContent = null;
 
     try {
+      let addressToVerify = inputToVerify;
+
+      if (isTransaction) {
+        const tx = await web3.eth.getTransaction(inputToVerify);
+        if (!tx) {
+          verifyProofError.textContent = 'Transaction not found';
+          verifySpinner.classList.add('hidden');
+          return;
+        }
+        addressToVerify = tx.from;
+      }
+
       const { agent, delegate, evidence, timestamp } =
         await coreContract.methods
           .proofOfHumanity(addressToVerify)
@@ -175,13 +199,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const dateString = new Date(parseInt(timestamp, 16)).toISOString();
 
+      const successMessage = isTransaction ? 
+        `Humanity of transaction sender proven ${dateString}` :
+        `Humanity proven ${dateString}`;
+
       if (isAddressValid && isAgentValid && isDelegateValid) {
-        verifyProofTimestamp.textContent = dateString;
+        verifyProofSuccessMessage.textContent = successMessage;
         verifyProofSuccess.classList.remove('hidden');
         verifyProofError.textContent = null;
       } else {
         verifyProofError.textContent = 'Invalid proof-of-humanity';
-        verifyProofTimestamp.textContent = null;
+        verifyProofSuccessMessage.textContent = null;
         verifyProofSuccess.classList.add('hidden');
       }
 

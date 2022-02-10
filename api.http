@@ -1,2 +1,5 @@
-### Verify proof-of-humanity for 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
-http://localhost:3001/api/v1/verify/0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
+### Verify proof-of-humanity for address 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
+http://localhost:3001/api/v1/verify-address/0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
+
+### Verify proof-of-humanity for transaction 0x619f152deb1974369a2fc130eacc616b6d20e5d6651c05a0b6649df65af4fda1
+http://localhost:3001/api/v1/verify-transaction/0x619f152deb1974369a2fc130eacc616b6d20e5d6651c05a0b6649df65af4fda1

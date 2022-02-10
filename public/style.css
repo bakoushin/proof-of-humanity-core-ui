@@ -19,7 +19,7 @@ body {
 }
 
 #root {
-  width: 48rem;
+  width: 53rem;
 }
 
 h1 {
@@ -35,6 +35,10 @@ input {
   height: 3rem;
   padding: 0 1rem;
   margin-right: 0.5rem;
+}
+
+.input-transaction {
+  width: 40rem;
 }
 
 button {
