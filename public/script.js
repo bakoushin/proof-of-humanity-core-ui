@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'EvidenceDelegateAdded',
         { filter: { evidenceDelegate: delegate } },
         (error, event) => {
-          addDelegateSpinner.classList.add('hidden');
           if (error) {
             console.error(error);
             return;
@@ -110,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       addDelegateSuccessAddress.textContent = delegate;
       addDelegateSuccess.classList.remove('hidden');
+      addDelegateSpinner.classList.add('hidden');
     } catch (error) {
       console.error(error);
       addDelegateError.textContent = 'Error';
